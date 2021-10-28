@@ -70,13 +70,16 @@ yum install centralmanagement/perfsonar-centralmanagement-4.4.0-1.el7.noarch.rpm
 
 5. Configure Firewall
 ```bash
-iptables -A IN_public_allow -p tcp --dport 80 -j ACCEPT
+firewall-cmd --add-service=http
 ```
 ```bash
-iptables -A IN_public_allow -p tcp --dport 5000 -j ACCEPT
+firewall-cmd --add-service=https
 ```
 ```bash
-iptables -A IN_public_allow -p tcp --dport 11283 -j ACCEPT
+firewall-cmd --add-port=5000/tcp
+```
+```bash
+firewall-cmd --add-port=11283/tcp
 ```
 
 ## Kibana (optional)
@@ -91,7 +94,7 @@ yum install archive/kibana-archive-4.4.0-0.0.a1.el7.noarch.rpm -y
 echo "server.host: 0.0.0.0" >> /etc/kibana/kibana.yml && systemctl restart kibana
 ```
 ```bash
-iptables -A IN_public_allow -p tcp --dport 5601 -j ACCEPT
+firewall-cmd --add-port=5601/tcp
 ```
 
 ## Testing
