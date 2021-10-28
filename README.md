@@ -68,6 +68,17 @@ yum install archive/perfsonar-archive-4.4.0-0.0.a1.el7.noarch.rpm -y
 yum install centralmanagement/perfsonar-centralmanagement-4.4.0-1.el7.noarch.rpm -y
 ```
 
+5. Configure Firewall
+```bash
+iptables -A IN_public_allow -p tcp --dport 80 -j ACCEPT
+```
+```bash
+iptables -A IN_public_allow -p tcp --dport 5000 -j ACCEPT
+```
+```bash
+iptables -A IN_public_allow -p tcp --dport 11283 -j ACCEPT
+```
+
 ## Kibana (optional)
 
 1. Install
@@ -87,8 +98,8 @@ iptables -A IN_public_allow -p tcp --dport 5601 -j ACCEPT
 
 0. Open Web interfaces
 
-| Service | Port |
-| ------- | ---- |
-| Maddash | 80   |
-| Elmond  | 5000 |
-| Kibana  | 5601 |
+| Service | Port | Path           |
+| ------- | ---- | -------------- |
+| Maddash | 80   | /maddash-webui |
+| Elmond  | 5000 | -              |
+| Kibana  | 5601 | -              |
